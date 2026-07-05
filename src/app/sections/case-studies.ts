@@ -81,7 +81,7 @@ export class CaseStudies {
       period: '2023 – 2025',
       title: 'Aviation ops platform — 5 modules, 3–5 airports',
       story:
-        'Owned and shipped 5 enterprise aviation modules used daily by 100–200 ground-operations staff — turnaround management, workforce rostering, GSE tracking, revenue and billing.',
+        'Rsmart\'s platform manages ~300,000 aircraft turnarounds and 30,000+ staff rosters a year across 25+ airports worldwide. I owned and shipped 5 of its modules — RsmarTurn, RsmartAssist, RsmartGSE, Revenue$mart and RsmartAEP — used daily by 100–200 ground-operations staff across 3–5 airports.',
       wins: [
         'Led a zero-downtime Angular 8→17 migration of the live multi-module platform — restructured into lazy-loaded modular architecture.',
         'Engineered data-heavy grids rendering 10,000+ records in under 1 second (virtual scrolling, server-side pagination, RxJS).',

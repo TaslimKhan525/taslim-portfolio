@@ -111,6 +111,7 @@ export class CommandPalette {
   private readonly commands: Command[] = [
     { label: '⚡ Live performance demo', hint: '10k rows', target: '#demo' },
     { label: '📡 Real-time stream demo', hint: 'rxjs · 200 tx/s', target: '#stream' },
+    { label: '🛫 Aviation ops board', hint: 'turnarounds · SLA', target: '#ops' },
     { label: '💼 Case studies', hint: 'fintech · aviation', target: '#work' },
     { label: '🛠 Skills', hint: 'angular · signals', target: '#skills' },
     { label: '✍ Writing', hint: 'linkedin posts', target: '#writing' },
