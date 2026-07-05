@@ -176,6 +176,50 @@ const FEED_SIZE = 7;
     }
     @media (max-width: 720px) {
       .board { grid-template-columns: 1fr; }
+      .panel { padding: 16px; }
+      .controls {
+        align-items: stretch;
+        gap: 16px;
+      }
+      .controls .btn {
+        justify-content: center;
+        width: 100%;
+      }
+      .rate {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+        width: 100%;
+      }
+      .rate input {
+        width: 100%;
+        min-width: 0;
+      }
+      .rate-val {
+        min-width: 62px;
+        text-align: right;
+        white-space: nowrap;
+      }
+      .feed-row {
+        gap: 8px;
+        padding-inline: 10px;
+      }
+      .ref {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .amt {
+        white-space: nowrap;
+      }
+    }
+    @media (max-width: 420px) {
+      .rate {
+        grid-template-columns: 1fr auto;
+      }
+      .rate > span:first-child {
+        grid-column: 1 / -1;
+      }
     }
   `,
 })
