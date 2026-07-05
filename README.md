@@ -1,59 +1,42 @@
-# TaslimPortfolio
+# taslim.khan — portfolio
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.31.
+> **I build Angular apps that actually perform.** This portfolio is the proof — not a template, not a page builder. Every demo below runs live in your browser.
 
-## Development server
+**Live site:** _coming soon_ · **LinkedIn:** [linkedin.com/in/taslim3658](https://www.linkedin.com/in/taslim3658)
 
-To start a local development server, run:
+## What's inside
 
-```bash
-ng serve
-```
+| Demo | The claim it proves |
+|---|---|
+| ⚡ **10,000-row grid** | "10k+ records rendered in under a second" — a hand-rolled virtual scroller (no CDK, no libraries). Only ~24 rows exist in the DOM at any moment; generation + render measured live at ~40ms. |
+| 📡 **Real-time stream** | "Real-time financial workflows" — an RxJS pipeline (`toObservable → switchMap → interval`) pushing up to **200 transactions/sec** into Signals, with a hand-drawn SVG sparkline. Drag the slider; the FPS badge doesn't flinch. |
+| 📊 **Live perf HUD** | The page measures itself: live FPS, First Contentful Paint, and JS transfer size straight from the Performance API. |
+| ⌨️ **Ctrl+K palette** | Signals-powered command palette (`signal` + `computed` filtering) — keyboard-first navigation. |
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Engineering choices
 
-## Code scaffolding
+- **Angular 20** — standalone components, Signals, `@for`/`@if` control flow
+- **OnPush change detection everywhere** — no wasted render cycles
+- **Zero UI libraries** — every component, the virtual scroller, and the sparkline are hand-built (~83 KB total transfer)
+- **Accessible by default** — honors `prefers-reduced-motion`, semantic landmarks, keyboard navigation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+## Run it
 
 ```bash
-ng build
+npm install
+npm start        # http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Structure
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+```
+src/app/
+├── sections/          # hero, perf-demo, stream-demo, case-studies, skills, writing, contact
+├── shared/            # reveal directive, perf HUD, command palette
+└── app.ts             # shell
 ```
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Built by **Taslim Khan** — Frontend Engineer · Angular Specialist · FinTech & Aviation.
+Open to Senior Frontend / Frontend Engineer roles: [taslim3658@gmail.com](mailto:taslim3658@gmail.com)

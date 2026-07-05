@@ -1,1 +1,142 @@
-/* You can add global styles to this file, and also import other style files */
+/* ===== Design tokens — matches the LinkedIn banner identity ===== */
+:root {
+  --bg: #060d18;
+  --bg-raised: #0a1a30;
+  --bg-card: #0c1f3a;
+  --line: #16304f;
+  --accent: #2ba4ea;
+  --accent-soft: rgba(43, 164, 234, 0.12);
+  --accent-glow: rgba(43, 164, 234, 0.35);
+  --text: #e6eef7;
+  --text-dim: #8fa8c2;
+  --text-faint: #5f83a8;
+  --ok: #2fd08c;
+  --warn: #f0b429;
+  --radius: 14px;
+  --font: "Segoe UI", system-ui, -apple-system, Roboto, "Helvetica Neue", sans-serif;
+  --mono: "Cascadia Code", "Consolas", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--accent); color: #04101f; }
+
+/* ===== Shared section layout ===== */
+.section {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 84px 24px;
+}
+
+.section-tag {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.section-title {
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+.section-sub {
+  color: var(--text-dim);
+  max-width: 640px;
+  margin: 0 0 40px;
+}
+
+.card {
+  background: linear-gradient(160deg, var(--bg-card), var(--bg-raised));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 34px -14px var(--accent-glow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid var(--accent);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #04101f;
+}
+.btn-primary:hover { box-shadow: 0 0 24px var(--accent-glow); transform: translateY(-2px); }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--accent);
+}
+.btn-ghost:hover { background: var(--accent-soft); }
+
+.chip {
+  display: inline-block;
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  background: var(--bg-raised);
+  transition: all 0.2s ease;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 640px) {
+  .section { padding: 56px 18px; }
+}
+
+/* ===== Scroll-reveal (used by the appReveal directive) ===== */
+app-perf-demo, app-stream-demo, app-case-studies, app-skills, app-writing, app-contact { display: block; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Accessibility: honor reduced-motion preferences ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
