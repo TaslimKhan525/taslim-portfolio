@@ -22,7 +22,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       <footer>
         <p>
           Built with Angular {{ ngVersion }} · Signals · zero UI libraries —
-          <a href="https://github.com/" target="_blank" rel="noopener">source on GitHub</a>
+          <a href="https://github.com/TaslimKhan525/taslim-portfolio" target="_blank" rel="noopener">source on GitHub</a>
         </p>
       </footer>
     </section>
