@@ -1,19 +1,8 @@
-import {
-  afterNextRender,
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  inject,
-  signal,
-  WritableSignal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-interface Stat {
-  prefix: string;
-  target: number;
-  suffix: string;
+interface ProofPoint {
+  value: string;
   label: string;
-  current: WritableSignal<number>;
 }
 
 @Component({
@@ -22,30 +11,40 @@ interface Stat {
   template: `
     <section class="hero" id="top">
       <div class="hero-inner">
-        <p class="kicker">// frontend engineer · angular specialist</p>
+        <p class="kicker">// angular-first frontend engineer</p>
         <h1>
-          I build Angular apps that<br />
-          <span class="glow">actually perform.</span>
+          Enterprise Angular frontend engineer for
+          <span class="glow">workflow-driven applications.</span>
         </h1>
         <p class="lede">
-          Nearly 4 years across <strong>FinTech</strong> and <strong>Aviation</strong> —
-          real-time banking dashboards, airport ground operations, and data-heavy UIs
-          that render <strong>10,000+ records in under a second</strong>.
+          I build Angular applications for aviation operations and financial technology:
+          scheduling interfaces, maker-checker workflows, data-heavy screens, reusable
+          components, API-integrated UI, and production delivery.
         </p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#demo">See the live demo ⚡</a>
-          <a class="btn btn-ghost" href="#work">Case studies</a>
+        <p class="support">
+          Angular is my primary expertise, with professional experience across Angular 8-17,
+          TypeScript, RxJS, REST APIs, complex forms, and cross-stack troubleshooting when
+          product delivery requires it.
+        </p>
+        <div class="role-fit" aria-label="Target roles">
+          @for (role of targetRoles; track role) {
+            <span>{{ role }}</span>
+          }
         </div>
-        <div class="stat-strip">
-          @for (s of stats; track s.label) {
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#work">View product engineering work</a>
+          <a class="btn btn-ghost" href="#skills">Skills</a>
+        </div>
+        <div class="stat-strip" aria-label="Profile highlights">
+          @for (p of proofPoints; track p.label) {
             <div class="stat">
-              <span class="stat-value">{{ s.prefix }}{{ s.current() }}{{ s.suffix }}</span>
-              <span class="stat-label">{{ s.label }}</span>
+              <span class="stat-value">{{ p.value }}</span>
+              <span class="stat-label">{{ p.label }}</span>
             </div>
           }
         </div>
         <p class="palette-hint">
-          press <kbd>Ctrl</kbd> + <kbd>K</kbd> to navigate like a dev
+          press <kbd>Ctrl</kbd> + <kbd>K</kbd> to navigate
         </p>
       </div>
     </section>
@@ -59,9 +58,8 @@ interface Stat {
       overflow: hidden;
       background:
         radial-gradient(ellipse 60% 50% at 70% 20%, rgba(43, 164, 234, 0.10), transparent),
-        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(43, 164, 234, 0.06), transparent);
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(47, 208, 140, 0.06), transparent);
     }
-    /* animated blueprint grid */
     .hero::before {
       content: '';
       position: absolute;
@@ -77,7 +75,12 @@ interface Stat {
     @keyframes grid-pan {
       to { transform: translate(56px, 56px); }
     }
-    .hero-inner { max-width: 1080px; margin: 0 auto; padding: 96px 24px 64px; position: relative; }
+    .hero-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 112px 24px 64px;
+      position: relative;
+    }
     .kicker {
       font-family: var(--mono);
       color: var(--accent);
@@ -85,38 +88,59 @@ interface Stat {
       margin: 0 0 18px;
     }
     h1 {
-      font-size: clamp(38px, 6.5vw, 68px);
+      font-size: clamp(38px, 6.2vw, 68px);
       line-height: 1.08;
       font-weight: 800;
       margin: 0 0 22px;
-      letter-spacing: -1px;
+      max-width: 880px;
     }
     .glow {
       color: var(--accent);
       text-shadow: 0 0 34px var(--accent-glow);
     }
-    .lede {
+    .lede,
+    .support {
       font-size: clamp(16px, 2vw, 19px);
       color: var(--text-dim);
-      max-width: 620px;
-      margin: 0 0 34px;
+      max-width: 760px;
+      margin: 0 0 18px;
     }
-    .lede strong { color: var(--text); }
+    .support {
+      font-size: clamp(15px, 1.8vw, 17px);
+      max-width: 720px;
+      color: var(--text-faint);
+      margin-bottom: 22px;
+    }
+    .role-fit {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-bottom: 34px;
+      max-width: 760px;
+    }
+    .role-fit span {
+      padding: 7px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(43, 164, 234, 0.45);
+      background: rgba(43, 164, 234, 0.08);
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 12.5px;
+    }
     .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
     .stat-strip {
-      display: flex;
-      gap: 42px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(140px, 1fr));
+      gap: 22px;
       border-top: 1px solid var(--line);
       padding-top: 28px;
     }
     .stat { display: flex; flex-direction: column; }
     .stat-value {
       font-family: var(--mono);
-      font-size: 28px;
+      font-size: clamp(20px, 3vw, 28px);
       font-weight: 700;
       color: var(--accent);
-      font-variant-numeric: tabular-nums;
     }
     .stat-label { font-size: 13.5px; color: var(--text-faint); }
     .palette-hint {
@@ -134,48 +158,27 @@ interface Stat {
       background: var(--bg-raised);
       color: var(--text-dim);
     }
+    @media (max-width: 760px) {
+      .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .hero-inner { padding-top: 128px; }
+      .stat-strip { grid-template-columns: 1fr; }
+    }
   `,
 })
 export class Hero {
-  private readonly el = inject<ElementRef<HTMLElement>>(ElementRef);
-
-  readonly stats: Stat[] = [
-    { prefix: '~', target: 40, suffix: '%', label: 'faster initial load', current: signal(0) },
-    { prefix: '', target: 10, suffix: 'k+', label: 'records < 1s', current: signal(0) },
-    { prefix: '8→', target: 17, suffix: '', label: 'zero-downtime migration', current: signal(8) },
-    { prefix: '', target: 8, suffix: '+', label: 'teams on my component library', current: signal(0) },
+  readonly targetRoles = [
+    'Angular Developer',
+    'Senior Angular Developer',
+    'Frontend Engineer',
+    'Angular-focused Software Engineer',
   ];
 
-  constructor() {
-    afterNextRender(() => {
-      const strip = this.el.nativeElement.querySelector('.stat-strip');
-      if (!strip) return;
-      const io = new IntersectionObserver(
-        ([entry]) => {
-          if (!entry.isIntersecting) return;
-          io.disconnect();
-          this.countUp();
-        },
-        { threshold: 0.4 },
-      );
-      io.observe(strip);
-    });
-  }
-
-  private countUp(): void {
-    const DURATION = 1100;
-    const t0 = performance.now();
-    const from = this.stats.map((s) => s.current());
-
-    const step = (now: number) => {
-      const t = Math.min(1, (now - t0) / DURATION);
-      const ease = 1 - Math.pow(1 - t, 3); // ease-out cubic
-      for (let i = 0; i < this.stats.length; i++) {
-        const s = this.stats[i];
-        s.current.set(Math.round(from[i] + (s.target - from[i]) * ease));
-      }
-      if (t < 1) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
-  }
+  readonly proofPoints: ProofPoint[] = [
+    { value: '3y 10m', label: 'professional software development experience' },
+    { value: '8-17', label: 'professional Angular version experience' },
+    { value: 'Angular', label: 'primary and strongest expertise' },
+    { value: 'Aviation + FinTech', label: 'enterprise product domains' },
+  ];
 }

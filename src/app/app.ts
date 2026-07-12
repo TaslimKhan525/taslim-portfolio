@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Hero } from './sections/hero';
+import { RecruiterSnapshot } from './sections/recruiter-snapshot';
+import { WorkflowLab } from './sections/workflow-lab';
 import { PerfDemo } from './sections/perf-demo';
 import { StreamDemo } from './sections/stream-demo';
 import { OpsBoard } from './sections/ops-board';
@@ -14,18 +16,31 @@ import { CommandPalette } from './shared/command-palette';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Hero, PerfDemo, StreamDemo, OpsBoard, CaseStudies, Skills, Writing, Contact, Reveal, PerfHud, CommandPalette],
+  imports: [
+    Hero,
+    RecruiterSnapshot,
+    CaseStudies,
+    Skills,
+    WorkflowLab,
+    PerfDemo,
+    StreamDemo,
+    OpsBoard,
+    Writing,
+    Contact,
+    Reveal,
+    PerfHud,
+    CommandPalette,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   readonly navLinks = [
-    { href: '#demo', label: 'Demo' },
-    { href: '#stream', label: 'Stream' },
-    { href: '#ops', label: 'Ops' },
+    { href: '#snapshot', label: 'Fit' },
     { href: '#work', label: 'Work' },
     { href: '#skills', label: 'Skills' },
-    { href: '#writing', label: 'Writing' },
+    { href: '#workflow-lab', label: 'Lab' },
+    { href: '#demo', label: 'Demos' },
     { href: '#contact', label: 'Contact' },
   ];
 }

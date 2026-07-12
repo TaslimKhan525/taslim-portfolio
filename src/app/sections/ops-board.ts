@@ -24,21 +24,20 @@ const TASKS = ['DEBOARD', 'CLEAN', 'FUEL', 'CATER', 'BOARD'] as const;
 const TICK_MS = 300;
 
 /**
- * A miniature of the aviation UIs I shipped at Rsmart: live aircraft
- * turnaround tracking with SLA states and on-time performance.
- * Pure Signals — the "clock" is one interval driving immutable updates.
+ * Portfolio demo inspired by aviation operations workflows: task states,
+ * progress visibility, and exception-oriented UI. It is simulated data.
  */
 @Component({
   selector: 'app-ops-board',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="section" id="ops">
-      <p class="section-tag">live demo — aviation ops</p>
-      <h2 class="section-title">Aircraft turnarounds, live.</h2>
+      <p class="section-tag">aviation workflow demo</p>
+      <h2 class="section-title">Turnaround task visibility in Angular.</h2>
       <p class="section-sub">
-        At Rsmart I built UIs for a platform managing ~300,000 aircraft turnarounds a year.
-        This is a miniature: simulated flights moving through the five turnaround stages at
-        60× speed, with SLA states and on-time performance updating in real time.
+        A compact simulation of the kind of operational screens I worked on at RSmart:
+        task sequence, status changes, exception visibility, and data-driven UI updates
+        for aviation turnaround workflows.
       </p>
 
       <div class="board-head">
@@ -48,7 +47,7 @@ const TICK_MS = 300;
         <span class="metric">
           OTP <span class="metric-num" [class.warn]="otp() < 90">{{ otp() }}%</span>
         </span>
-        <span class="metric dim">sim speed 60×</span>
+        <span class="metric dim">simulated workflow</span>
       </div>
 
       <div class="board card">
@@ -85,8 +84,8 @@ const TICK_MS = 300;
       </div>
 
       <p class="foot">
-        Built the real thing with <code>DayPilot</code> rosters, RxJS and server-side pagination —
-        for ground-ops teams at 3–5 airports ·
+        Related production work included Angular operational screens, DayPilot scheduling
+        interfaces, REST API integration, RxJS, and production troubleshooting.
         <a href="https://www.rsmart.in/" target="_blank" rel="noopener">rsmart.in</a>
       </p>
     </section>
@@ -221,12 +220,12 @@ export class OpsBoard {
   }
 
   private spawn(): Flight {
-    const airlines = ['AI', '6E', 'UK', 'QP', 'IX', 'SG'];
+    const flightPrefixes = ['FL', 'GT', 'TR', 'RW', 'SK', 'VX'];
     const aircraft = ['A320neo', 'B737-800', 'A321', 'ATR 72', 'B777-300ER'];
     const pace = 0.7 + Math.random() * 1.6;
     return {
       id: this.nextId++,
-      flightNo: `${airlines[(Math.random() * airlines.length) | 0]}${100 + ((Math.random() * 899) | 0)}`,
+      flightNo: `${flightPrefixes[(Math.random() * flightPrefixes.length) | 0]}${100 + ((Math.random() * 899) | 0)}`,
       gate: `${'ABCD'[(Math.random() * 4) | 0]}${1 + ((Math.random() * 24) | 0)}`,
       aircraft: aircraft[(Math.random() * aircraft.length) | 0],
       progress: 0,

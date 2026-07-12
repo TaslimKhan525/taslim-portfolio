@@ -11,7 +11,7 @@ interface Command {
   target: string;
 }
 
-/** Ctrl+K command palette — because every serious dev tool has one. */
+/** Ctrl+K command palette for keyboard-first section navigation. */
 @Component({
   selector: 'app-command-palette',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,7 +25,7 @@ interface Command {
           <input
             #box
             type="text"
-            placeholder="Where to? Try 'demo'…"
+            placeholder="Where to? Try 'work'..."
             [value]="query()"
             (input)="query.set(box.value); active.set(0)"
             autofocus
@@ -41,10 +41,10 @@ interface Command {
                 <span class="hint">{{ c.hint }}</span>
               </li>
             } @empty {
-              <li class="empty">No match — try “demo”, “skills”, “contact”.</li>
+              <li class="empty">No match - try "work", "skills", "contact".</li>
             }
           </ul>
-          <footer>↑↓ navigate · ↵ go · esc close</footer>
+          <footer>arrow keys navigate / enter opens / esc closes</footer>
         </div>
       </div>
     }
@@ -109,14 +109,16 @@ export class CommandPalette {
   readonly active = signal(0);
 
   private readonly commands: Command[] = [
-    { label: '⚡ Live performance demo', hint: '10k rows', target: '#demo' },
-    { label: '📡 Real-time stream demo', hint: 'rxjs · 200 tx/s', target: '#stream' },
-    { label: '🛫 Aviation ops board', hint: 'turnarounds · SLA', target: '#ops' },
-    { label: '💼 Case studies', hint: 'fintech · aviation', target: '#work' },
-    { label: '🛠 Skills', hint: 'angular · signals', target: '#skills' },
-    { label: '✍ Writing', hint: 'linkedin posts', target: '#writing' },
-    { label: '✉ Contact', hint: 'hire me', target: '#contact' },
-    { label: '⬆ Back to top', hint: 'hero', target: '#top' },
+    { label: 'Recruiter fit snapshot', hint: 'role fit', target: '#snapshot' },
+    { label: 'Selected product engineering work', hint: 'fintech / aviation', target: '#work' },
+    { label: 'Skills hierarchy', hint: 'angular / rxjs', target: '#skills' },
+    { label: 'Maker-checker workflow lab', hint: 'role actions', target: '#workflow-lab' },
+    { label: 'Virtualized data UI demo', hint: '10k mock rows', target: '#demo' },
+    { label: 'RxJS interaction demo', hint: 'simulated stream', target: '#stream' },
+    { label: 'Aviation workflow demo', hint: 'turnaround UI', target: '#ops' },
+    { label: 'Writing', hint: 'linkedin posts', target: '#writing' },
+    { label: 'Contact', hint: 'email / linkedin', target: '#contact' },
+    { label: 'Back to top', hint: 'hero', target: '#top' },
   ];
 
   readonly filtered = computed(() => {

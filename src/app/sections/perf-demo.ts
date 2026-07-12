@@ -21,9 +21,8 @@ const VIEWPORT_HEIGHT = 456;
 const OVERSCAN = 6;
 
 /**
- * Live proof of the resume claim: "10,000+ records rendered in under 1 second."
- * Hand-rolled virtual scroller — no CDK, no libraries. Only the ~18 visible rows
- * exist in the DOM at any moment; everything is driven by Angular Signals.
+ * Portfolio demo: a hand-rolled virtual scroller. This is an interaction sample,
+ * not a claim about confidential production data volume or business outcomes.
  */
 @Component({
   selector: 'app-perf-demo',
@@ -31,12 +30,12 @@ const OVERSCAN = 6;
   imports: [DecimalPipe],
   template: `
     <section class="section" id="demo">
-      <p class="section-tag">live demo — not a screenshot</p>
-      <h2 class="section-title">10,000 records. Watch how fast.</h2>
+      <p class="section-tag">angular interaction demo</p>
+      <h2 class="section-title">Virtualized data-heavy UI.</h2>
       <p class="section-sub">
-        This grid generates ten thousand mock banking transactions and renders them with a
-        hand-rolled virtual scroller — no libraries, just Angular Signals and math. Only the
-        rows you can see exist in the DOM. Scroll it. Feel it.
+        This grid generates ten thousand mock enterprise records and renders them with a
+        hand-rolled virtual scroller. It demonstrates the same Angular thinking needed for
+        data-heavy product screens: constrained DOM size, stable row identity, and measured UI state.
       </p>
 
       <div class="demo-bar">
@@ -46,7 +45,7 @@ const OVERSCAN = 6;
         @if (renderMs(); as ms) {
           <span class="metric">
             <span class="metric-num">{{ ms | number: '1.0-1' }}ms</span>
-            to generate + render {{ ROWS | number }} rows
+            to generate + render {{ ROWS | number }} mock rows
           </span>
         }
         <span class="metric dim">
@@ -57,7 +56,7 @@ const OVERSCAN = 6;
       <div class="grid card">
         <div class="grid-head">
           <span>Ref</span><span>Account</span><span>Type</span>
-          <span class="num">Amount (₹)</span><span>Status</span><span>Time</span>
+          <span class="num">Amount</span><span>Status</span><span>Time</span>
         </div>
         <div
           class="grid-viewport"
@@ -82,8 +81,8 @@ const OVERSCAN = 6;
       </div>
 
       <p class="foot">
-        Techniques: virtual scrolling · OnPush change detection · Signals ·
-        <code>track</code>-keyed rows — the same patterns I used on production banking dashboards.
+        Techniques: virtual scrolling, OnPush change detection, Signals, and
+        <code>track</code>-keyed rows for data-heavy Angular screens.
       </p>
     </section>
   `,
@@ -223,15 +222,15 @@ export class PerfDemo {
     const t0 = performance.now();
     const types: Txn['type'][] = ['NEFT', 'RTGS', 'IMPS', 'UPI'];
     const statuses: Txn['status'][] = ['SETTLED', 'PENDING', 'REVIEW'];
-    const banks = ['SBIN', 'HDFC', 'ICIC', 'UTIB', 'KKBK', 'PUNB'];
+    const accountGroups = ['PAY', 'TRK', 'TRS', 'CON', 'OPS', 'LED'];
     const rows: Txn[] = new Array(this.ROWS);
 
     for (let i = 0; i < this.ROWS; i++) {
-      const bank = banks[(Math.random() * banks.length) | 0];
+      const accountGroup = accountGroups[(Math.random() * accountGroups.length) | 0];
       rows[i] = {
         id: i,
         ref: `TXN${String(100000000 + ((Math.random() * 899999999) | 0))}`,
-        account: `${bank}••${String(1000 + ((Math.random() * 9000) | 0))}`,
+        account: `${accountGroup}-${String(1000 + ((Math.random() * 9000) | 0))}`,
         type: types[(Math.random() * types.length) | 0],
         amount: Math.round(Math.random() * 25_00_000 * 100) / 100,
         status: statuses[(Math.random() * statuses.length) | 0],

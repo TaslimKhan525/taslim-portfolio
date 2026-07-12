@@ -21,10 +21,8 @@ const HISTORY_POINTS = 60;
 const FEED_SIZE = 7;
 
 /**
- * Live proof of "real-time financial workflows": an RxJS stream pushes
- * transactions at a visitor-controlled rate (up to 200/sec) into Signals,
- * with a hand-drawn SVG sparkline. No chart library, no websocket faked —
- * the reactive pipeline (toObservable → switchMap → interval) is the demo.
+ * Portfolio demo: an RxJS-driven simulated operations feed. This demonstrates
+ * reactive UI handling without implying live transport or payment-engine ownership.
  */
 @Component({
   selector: 'app-stream-demo',
@@ -32,12 +30,12 @@ const FEED_SIZE = 7;
   imports: [DecimalPipe],
   template: `
     <section class="section" id="stream">
-      <p class="section-tag">live demo — rxjs stream</p>
-      <h2 class="section-title">Real-time, under your control.</h2>
+      <p class="section-tag">rxjs interaction demo</p>
+      <h2 class="section-title">Reactive UI state under changing throughput.</h2>
       <p class="section-sub">
-        Banking dashboards don't get to lag when payments surge. This feed is a real RxJS
-        pipeline — drag the slider and push it to 200 transactions/second. Watch the FPS
-        badge in the corner: it doesn't flinch.
+        This simulated feed shows how Angular, RxJS, and Signals can handle changing
+        asynchronous UI state. Drag the slider to change the rate and watch the list,
+        counters, and sparkline update together.
       </p>
 
       <div class="panel card">
@@ -60,7 +58,7 @@ const FEED_SIZE = 7;
               <div class="feed-row">
                 <span class="mono ref">{{ t.ref }}</span>
                 <span class="chan c-{{ t.channel }}">{{ t.channel }}</span>
-                <span class="mono amt">₹{{ t.amount | number: '1.2-2' }}</span>
+                <span class="mono amt">INR {{ t.amount | number: '1.2-2' }}</span>
               </div>
             } @empty {
               <div class="feed-row idle">stream paused — press resume</div>
@@ -82,8 +80,8 @@ const FEED_SIZE = 7;
       </div>
 
       <p class="foot">
-        Pipeline: <code>toObservable(rate)</code> → <code>switchMap</code> →
-        <code>interval</code> → Signals. Pause/resume, dynamic backpressure, zero dropped frames.
+        Pipeline: <code>toObservable(rate)</code> to <code>switchMap</code> to
+        <code>interval</code> to Signals, with pause/resume and measured page responsiveness.
       </p>
     </section>
   `,

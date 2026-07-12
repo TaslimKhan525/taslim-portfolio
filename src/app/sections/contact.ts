@@ -7,10 +7,10 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     <section class="section" id="contact">
       <div class="card contact-card">
         <p class="section-tag">contact</p>
-        <h2 class="section-title">Building something ambitious in Angular?</h2>
+        <h2 class="section-title">Looking for an Angular-focused engineer?</h2>
         <p class="section-sub">
-          Open to Senior Frontend / Frontend Engineer roles — remote or relocation.
-          The fastest way to reach me:
+          Open to Angular Developer, Senior Angular Developer, Frontend Engineer, and
+          Angular-focused Software Engineer roles. Best way to reach me:
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="mailto:taslim3658&#64;gmail.com">✉ taslim3658&#64;gmail.com</a>
@@ -21,7 +21,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       </div>
       <footer>
         <p>
-          Built with Angular {{ ngVersion }} · Signals · zero UI libraries —
+          Built with Angular {{ ngVersion }} using standalone components and Signals.
           <a href="https://github.com/TaslimKhan525/taslim-portfolio" target="_blank" rel="noopener">source on GitHub</a>
         </p>
       </footer>

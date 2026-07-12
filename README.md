@@ -1,42 +1,51 @@
-# taslim.khan — portfolio
+# taslim.khan portfolio
 
-> **I build Angular apps that actually perform.** This portfolio is the proof — not a template, not a page builder. Every demo below runs live in your browser.
+Angular-first developer portfolio for positioning around Angular Developer, Senior Angular
+Developer, Frontend Engineer, and Angular-focused Software Engineer roles.
 
-**Live site:** _coming soon_ · **LinkedIn:** [linkedin.com/in/taslim3658](https://www.linkedin.com/in/taslim3658)
+## Positioning
 
-## What's inside
+Taslim Khan is an enterprise Angular frontend engineer with 3 years 10 months of professional
+software development experience across aviation operations and financial technology.
 
-| Demo | The claim it proves |
-|---|---|
-| ⚡ **10,000-row grid** | "10k+ records rendered in under a second" — a hand-rolled virtual scroller (no CDK, no libraries). Only ~24 rows exist in the DOM at any moment; generation + render measured live at ~40ms. |
-| 📡 **Real-time stream** | "Real-time financial workflows" — an RxJS pipeline (`toObservable → switchMap → interval`) pushing up to **200 transactions/sec** into Signals, with a hand-drawn SVG sparkline. Drag the slider; the FPS badge doesn't flinch. |
-| 📊 **Live perf HUD** | The page measures itself: live FPS, First Contentful Paint, and JS transfer size straight from the Performance API. |
-| ⌨️ **Ctrl+K palette** | Signals-powered command palette (`signal` + `computed` filtering) — keyboard-first navigation. |
+The portfolio emphasizes:
 
-## Engineering choices
+- Angular as the primary expertise, with professional experience across Angular 8-17.
+- Complex workflow-driven applications, not only UI pages.
+- RxJS, TypeScript, REST API integration, reusable Angular components, complex forms, ag-Grid,
+  and DayPilot Scheduler.
+- Supporting cross-stack production work in React, Node.js, C#, .NET MVC, MongoDB, Jenkins,
+  Kubernetes exposure, Windows Server, deployment, and troubleshooting.
 
-- **Angular 20** — standalone components, Signals, `@for`/`@if` control flow
-- **OnPush change detection everywhere** — no wasted render cycles
-- **Zero UI libraries** — every component, the virtual scroller, and the sparkline are hand-built (~83 KB total transfer)
-- **Accessible by default** — honors `prefers-reduced-motion`, semantic landmarks, keyboard navigation
+## Main sections
+
+| Section | Purpose |
+| --- | --- |
+| Hero | Angular-first enterprise positioning for recruiters and interviewers. |
+| Recruiter Snapshot | Fast role-fit summary for Angular and frontend hiring screens. |
+| Selected Product Engineering Work | Six workflow-heavy case studies across DataNimbus and RSmart product areas. |
+| Skills Hierarchy | Expanded keyword coverage while separating primary Angular expertise from exposure areas. |
+| Workflow Lab | Interactive maker-checker-verifier demo with role actions, document checks, and validation state. |
+| Interaction Demos | Angular demos for virtualized data UI, RxJS state, and aviation workflow presentation. |
+| Writing / Contact | LinkedIn writing links and direct contact paths. |
+
+## Accuracy guardrails
+
+The portfolio avoids unsupported metrics, client names, bank names, airline/airport claims,
+transaction volumes, confidential workflow rules, and company-level product outcomes. Demos use
+mock/simulated data and are described as portfolio interaction samples.
 
 ## Run it
 
 ```bash
 npm install
-npm start        # http://localhost:4200
+npm start
 ```
 
-## Structure
+Local app: `http://localhost:4200`
 
+## Build
+
+```bash
+npm run build
 ```
-src/app/
-├── sections/          # hero, perf-demo, stream-demo, case-studies, skills, writing, contact
-├── shared/            # reveal directive, perf HUD, command palette
-└── app.ts             # shell
-```
-
----
-
-Built by **Taslim Khan** — Frontend Engineer · Angular Specialist · FinTech & Aviation.
-Open to Senior Frontend / Frontend Engineer roles: [taslim3658@gmail.com](mailto:taslim3658@gmail.com)
