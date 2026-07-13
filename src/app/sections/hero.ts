@@ -110,7 +110,7 @@ interface ProofPoint {
     .hero-inner {
       max-width: 1080px;
       margin: 0 auto;
-      padding: 112px 24px 64px;
+      padding: 230px 24px 64px;
       position: relative;
     }
     .hero-grid {
@@ -131,7 +131,7 @@ interface ProofPoint {
       right: 16px;
       top: 100px;
       width: 150px;
-      opacity: 0.24;
+      opacity: 0.36;
       pointer-events: none;
       z-index: 0;
       display: flex;
@@ -330,7 +330,7 @@ interface ProofPoint {
       .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 480px) {
-      .hero-inner { padding-top: 128px; }
+      .hero-inner { padding-top: 230px; }
       .stat-strip { grid-template-columns: 1fr; }
     }
   `,
