@@ -8,7 +8,9 @@ export class Reveal {
   constructor() {
     afterNextRender(() => {
       const node = this.el.nativeElement;
+
       node.classList.add('reveal');
+
       const io = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -16,8 +18,12 @@ export class Reveal {
             io.disconnect();
           }
         },
-        { threshold: 0.12 },
+        {
+          threshold: 0.01,
+          rootMargin: '0px 0px -40px 0px',
+        },
       );
+
       io.observe(node);
     });
   }
