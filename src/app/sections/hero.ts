@@ -269,6 +269,9 @@ interface ProofPoint {
       }
     }
     @media (min-width: 900px) {
+      .hero-inner {
+        padding-top: 100px;
+      }
       .hero-grid {
         grid-template-columns: 1.25fr 0.75fr;
         grid-template-areas:
@@ -296,34 +299,48 @@ interface ProofPoint {
         padding-right: 0;
       }
       .portrait-container {
-        max-width: 320px;
-        margin: 85px 0 0;
+        max-width: 300px;
+        margin: 65px 0 0;
       }
       .portrait-image-wrapper::before {
+        content: '';
+        position: absolute;
+        inset: 0;
         display: block;
+        border: 1px solid var(--accent);
         border-radius: var(--radius);
         transform: translate(8px, 8px);
+        z-index: -1;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        opacity: 0.5;
       }
       .portrait-container:hover .portrait-image-wrapper::before {
         transform: translate(5px, 5px);
-        border-radius: var(--radius);
+        opacity: 0.8;
       }
       .portrait-frame {
         border-radius: var(--radius);
         border: 1px solid var(--line);
         box-shadow: none;
         aspect-ratio: 3 / 4;
+        mask-image: none;
+        -webkit-mask-image: none;
       }
       .portrait-container:hover .portrait-frame {
         border-radius: var(--radius);
       }
       .portrait-img {
         filter: none;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
       }
       .portrait-caption {
         display: block;
         text-align: left;
         padding-left: 2px;
+        margin-top: 10px;
       }
     }
     @media (max-width: 760px) {
