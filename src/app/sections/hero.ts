@@ -11,41 +11,70 @@ interface ProofPoint {
   template: `
     <section class="hero" id="top">
       <div class="hero-inner">
-        <p class="kicker">// angular-first frontend engineer</p>
-        <h1>
-          Enterprise Angular frontend engineer for
-          <span class="glow">workflow-driven applications.</span>
-        </h1>
-        <p class="lede">
-          I build Angular applications for aviation operations and financial technology:
-          scheduling interfaces, maker-checker workflows, data-heavy screens, reusable
-          components, API-integrated UI, and production delivery.
-        </p>
-        <p class="support">
-          Angular is my primary expertise, with professional experience across Angular 8-17,
-          TypeScript, RxJS, REST APIs, complex forms, and cross-stack troubleshooting when
-          product delivery requires it.
-        </p>
-        <div class="role-fit" aria-label="Target roles">
-          @for (role of targetRoles; track role) {
-            <span>{{ role }}</span>
-          }
-        </div>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#work">View product engineering work</a>
-          <a class="btn btn-ghost" href="#skills">Skills</a>
-        </div>
-        <div class="stat-strip" aria-label="Profile highlights">
-          @for (p of proofPoints; track p.label) {
-            <div class="stat">
-              <span class="stat-value">{{ p.value }}</span>
-              <span class="stat-label">{{ p.label }}</span>
+        <div class="hero-grid">
+          
+          <div class="hero-header">
+            <p class="kicker">// angular-first frontend engineer</p>
+            <h1>
+              Enterprise Angular frontend engineer for
+              <span class="glow">workflow-driven applications.</span>
+            </h1>
+            <p class="lede">
+              I build Angular applications for aviation operations and financial technology:
+              scheduling interfaces, maker-checker workflows, data-heavy screens, reusable
+              components, API-integrated UI, and production delivery.
+            </p>
+            <p class="support">
+              Angular is my primary expertise, with professional experience across Angular 8-17,
+              TypeScript, RxJS, REST APIs, complex forms, and cross-stack troubleshooting when
+              product delivery requires it.
+            </p>
+          </div>
+
+          <div class="hero-portrait">
+            <div class="portrait-container">
+              <div class="portrait-image-wrapper">
+                <div class="portrait-frame">
+                  <img
+                    src="images/taslim-khan.jpg"
+                    alt="Taslim Khan"
+                    class="portrait-img"
+                  />
+                </div>
+              </div>
+              <div class="portrait-caption">
+                Taslim Khan // Angular Frontend Engineer
+              </div>
             </div>
-          }
+          </div>
+
+          <div class="hero-actions">
+            <div class="role-fit" aria-label="Target roles">
+              @for (role of targetRoles; track role) {
+                <span>{{ role }}</span>
+              }
+            </div>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#work">View product engineering work</a>
+              <a class="btn btn-ghost" href="#skills">Skills</a>
+            </div>
+          </div>
+
+          <div class="hero-footer">
+            <div class="stat-strip" aria-label="Profile highlights">
+              @for (p of proofPoints; track p.label) {
+                <div class="stat">
+                  <span class="stat-value">{{ p.value }}</span>
+                  <span class="stat-label">{{ p.label }}</span>
+                </div>
+              }
+            </div>
+            <p class="palette-hint">
+              press <kbd>Ctrl</kbd> + <kbd>K</kbd> to navigate
+            </p>
+          </div>
+
         </div>
-        <p class="palette-hint">
-          press <kbd>Ctrl</kbd> + <kbd>K</kbd> to navigate
-        </p>
       </div>
     </section>
   `,
@@ -81,6 +110,85 @@ interface ProofPoint {
       padding: 112px 24px 64px;
       position: relative;
     }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "header"
+        "portrait"
+        "actions"
+        "footer";
+      gap: 24px;
+    }
+    .hero-header {
+      grid-area: header;
+    }
+    .hero-portrait {
+      grid-area: portrait;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-actions {
+      grid-area: actions;
+    }
+    .hero-footer {
+      grid-area: footer;
+    }
+    .portrait-container {
+      position: relative;
+      width: 100%;
+      max-width: 250px;
+      margin: 8px auto 20px;
+      transition: transform 0.3s ease;
+    }
+    .portrait-container:hover {
+      transform: translateY(-4px);
+    }
+    .portrait-image-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+    .portrait-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      transform: translate(8px, 8px);
+      z-index: -1;
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      opacity: 0.5;
+    }
+    .portrait-container:hover .portrait-image-wrapper::before {
+      transform: translate(5px, 5px);
+      opacity: 0.8;
+    }
+    .portrait-frame {
+      position: relative;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background: var(--bg-raised);
+      aspect-ratio: 1 / 1;
+    }
+    .portrait-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 18% 10%;
+      display: block;
+    }
+    .portrait-caption {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-faint);
+      margin: 16px 0 0;
+      text-align: center;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
     .kicker {
       font-family: var(--mono);
       color: var(--accent);
@@ -98,8 +206,7 @@ interface ProofPoint {
       color: var(--accent);
       text-shadow: 0 0 34px var(--accent-glow);
     }
-    .lede,
-    .support {
+    .lede {
       font-size: clamp(16px, 2vw, 19px);
       color: var(--text-dim);
       max-width: 760px;
@@ -157,6 +264,36 @@ interface ProofPoint {
       border-radius: 5px;
       background: var(--bg-raised);
       color: var(--text-dim);
+    }
+    @media (min-width: 480px) {
+      .portrait-container {
+        max-width: 280px;
+      }
+    }
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.25fr 0.75fr;
+        grid-template-areas:
+          "header portrait"
+          "actions portrait"
+          "footer footer";
+        gap: 0 56px;
+        align-items: start;
+      }
+      .hero-portrait {
+        justify-content: flex-end;
+      }
+      .portrait-container {
+        max-width: 320px;
+        margin: 85px 0 0;
+      }
+      .portrait-frame {
+        aspect-ratio: 3 / 4;
+      }
+      .portrait-caption {
+        text-align: left;
+        padding-left: 2px;
+      }
     }
     @media (max-width: 760px) {
       .stat-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
