@@ -13,22 +13,12 @@ interface ProofPoint {
       <div class="hero-inner">
         <div class="hero-grid">
           
-          <div class="hero-header">
+          <div class="hero-intro">
             <p class="kicker">// angular-first frontend engineer</p>
             <h1>
               Enterprise Angular frontend engineer for
               <span class="glow">workflow-driven applications.</span>
             </h1>
-            <p class="lede">
-              I build Angular applications for aviation operations and financial technology:
-              scheduling interfaces, maker-checker workflows, data-heavy screens, reusable
-              components, API-integrated UI, and production delivery.
-            </p>
-            <p class="support">
-              Angular is my primary expertise, with professional experience across Angular 8-17,
-              TypeScript, RxJS, REST APIs, complex forms, and cross-stack troubleshooting when
-              product delivery requires it.
-            </p>
           </div>
 
           <div class="hero-portrait">
@@ -46,6 +36,19 @@ interface ProofPoint {
                 Taslim Khan // Angular Frontend Engineer
               </div>
             </div>
+          </div>
+
+          <div class="hero-body">
+            <p class="lede">
+              I build Angular applications for aviation operations and financial technology:
+              scheduling interfaces, maker-checker workflows, data-heavy screens, reusable
+              components, API-integrated UI, and production delivery.
+            </p>
+            <p class="support">
+              Angular is my primary expertise, with professional experience across Angular 8-17,
+              TypeScript, RxJS, REST APIs, complex forms, and cross-stack troubleshooting when
+              product delivery requires it.
+            </p>
           </div>
 
           <div class="hero-actions">
@@ -114,23 +117,36 @@ interface ProofPoint {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-areas:
-        "header"
-        "portrait"
+        "intro"
+        "body"
         "actions"
         "footer";
       gap: 24px;
     }
-    .hero-header {
-      grid-area: header;
+    .hero-intro {
+      grid-area: intro;
     }
     .hero-portrait {
-      grid-area: portrait;
+      position: absolute;
+      right: 16px;
+      top: 100px;
+      width: 150px;
+      opacity: 0.24;
+      pointer-events: none;
+      z-index: 0;
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-end;
+      align-items: flex-start;
+    }
+    .hero-body {
+      grid-area: body;
+      position: relative;
+      z-index: 1;
     }
     .hero-actions {
       grid-area: actions;
+      position: relative;
+      z-index: 1;
     }
     .hero-footer {
       grid-area: footer;
@@ -138,40 +154,23 @@ interface ProofPoint {
     .portrait-container {
       position: relative;
       width: 100%;
-      max-width: 250px;
-      margin: 8px auto 20px;
-      transition: transform 0.3s ease;
-    }
-    .portrait-container:hover {
-      transform: translateY(-4px);
+      margin: 0;
     }
     .portrait-image-wrapper {
       position: relative;
       z-index: 1;
     }
     .portrait-image-wrapper::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid var(--accent);
-      border-radius: var(--radius);
-      transform: translate(8px, 8px);
-      z-index: -1;
-      pointer-events: none;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      opacity: 0.5;
-    }
-    .portrait-container:hover .portrait-image-wrapper::before {
-      transform: translate(5px, 5px);
-      opacity: 0.8;
+      display: none;
     }
     .portrait-frame {
       position: relative;
       border-radius: var(--radius);
-      border: 1px solid var(--line);
+      border: none;
       overflow: hidden;
-      background: var(--bg-raised);
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 3 / 4;
+      mask-image: linear-gradient(to right, transparent 0%, black 50%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%);
     }
     .portrait-img {
       width: 100%;
@@ -179,15 +178,10 @@ interface ProofPoint {
       object-fit: cover;
       object-position: 18% 10%;
       display: block;
+      filter: grayscale(100%) contrast(115%) brightness(145%);
     }
     .portrait-caption {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-faint);
-      margin: 16px 0 0;
-      text-align: center;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+      display: none;
     }
     .kicker {
       font-family: var(--mono);
@@ -201,6 +195,8 @@ interface ProofPoint {
       font-weight: 800;
       margin: 0 0 22px;
       max-width: 880px;
+      position: relative;
+      z-index: 1;
     }
     .glow {
       color: var(--accent);
@@ -266,31 +262,66 @@ interface ProofPoint {
       color: var(--text-dim);
     }
     @media (min-width: 480px) {
-      .portrait-container {
-        max-width: 280px;
+      .hero-portrait {
+        width: 180px;
+        right: 16px;
+        top: 110px;
       }
     }
     @media (min-width: 900px) {
       .hero-grid {
         grid-template-columns: 1.25fr 0.75fr;
         grid-template-areas:
-          "header portrait"
+          "intro portrait"
+          "body portrait"
           "actions portrait"
           "footer footer";
         gap: 0 56px;
         align-items: start;
       }
+      .hero-intro {
+        padding-right: 0;
+      }
       .hero-portrait {
+        position: static;
+        width: auto;
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 1;
         justify-content: flex-end;
+        align-items: stretch;
+        padding-top: 0;
+      }
+      .hero-body {
+        padding-right: 0;
       }
       .portrait-container {
         max-width: 320px;
         margin: 85px 0 0;
       }
+      .portrait-image-wrapper::before {
+        display: block;
+        border-radius: var(--radius);
+        transform: translate(8px, 8px);
+      }
+      .portrait-container:hover .portrait-image-wrapper::before {
+        transform: translate(5px, 5px);
+        border-radius: var(--radius);
+      }
       .portrait-frame {
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        box-shadow: none;
         aspect-ratio: 3 / 4;
       }
+      .portrait-container:hover .portrait-frame {
+        border-radius: var(--radius);
+      }
+      .portrait-img {
+        filter: none;
+      }
       .portrait-caption {
+        display: block;
         text-align: left;
         padding-left: 2px;
       }
